@@ -1,9 +1,9 @@
+import React from "react";
 import styled from "styled-components";
 
 export const StyledTimeline = styled.div`
   flex: 1;
   width: 100%;
-  padding: 16px;
   overflow: hidden;
   h2 {
     font-size: 16px;
@@ -46,36 +46,40 @@ export const StyledTimeline = styled.div`
   }
 `;
 
-function Timeline(propriedades) {
+function Timeline({searchValue, ...propriedades}) {
 
-    const playlistNames = Object.keys(propriedades.playlists);
+  const playlistNames = Object.keys(propriedades.playlists);
 
-    return(
-        <StyledTimeline>
+  return (
+    <StyledTimeline>
+      {playlistNames.map(playlistName => {
+        const videos = propriedades.playlists[playlistName];
+        return (
+          <section key={playlistName}>
+            <h2>{playlistName}</h2>
             <div>
-                {playlistNames.map(playlistName => {
-                    const videos = propriedades.playlists[playlistName];
-                    return (
-                      <section>
-                          <h2>{playlistName}</h2>
-                          <div>
-                              {videos.map((video) => {
-                                  return (
-                                      <a href={video.url}>
-                                          <img src={video.thumb} />
-                                          <span>
-                                              {video.title}
-                                          </span>
-                                      </a>
-                                  )
-                              })}
-                          </div>
-                      </section>
+              {videos
+                .filter((video) => {
+                  const titleNormalized = video.title.toLowerCase();
+                  const searchValueNormalized = searchValue.toLowerCase();
+                  return titleNormalized.includes(searchValueNormalized)
+                })
+                .map((video) => {
+                  return (
+                    <a key={video.url} href={video.url}>
+                      <img src={video.thumb} />
+                      <span>
+                        {video.title}
+                      </span>
+                    </a>
                   )
                 })}
             </div>
-        </StyledTimeline>
-    )
-  }
-  
-  export default Timeline
+          </section>
+        )
+      })}
+    </StyledTimeline>
+  )
+}
+
+export default Timeline

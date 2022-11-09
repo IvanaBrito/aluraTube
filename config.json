@@ -2,6 +2,7 @@
     "name": "Mario Souto (DevSoutinho)",
     "jog": "Lead Software Engineer",
     "github": "omariosouto",
+    "banner": "https://images.unsplash.com/photo-1649695768323-96a6ecc056e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     "playlists": {
         "jogos": [
             {
@@ -129,5 +130,15 @@
                 "thumb": "https://img.youtube.com/vi/0JWMVc1CqpA/hqdefault.jpg"
             }
         ]
-    }
+    },
+    "favorites": [
+        {
+            "user": "teste_favorito01",
+            "profile": "omariosouto"
+        },
+        {
+            "user": "teste_favorito02",
+            "profile": "omariosouto"
+        }
+    ]
 }
