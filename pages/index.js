@@ -2,7 +2,6 @@ import config from '../config.json';
 import Header from "../src/components/Header";
 import Menu from "../src/components/Menu";
 import Timeline from "../src/components/Timeline";
-import { CSSReset } from '../src/components/CSSReset';
 import Favoritos from '../src/components/Favoritos';
 import React from 'react';
 
@@ -10,7 +9,6 @@ function HomePage() {
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
     return(
         <>
-            <CSSReset />
             <div style={{
                 display: "flex",
                 flexDirection: "column",
