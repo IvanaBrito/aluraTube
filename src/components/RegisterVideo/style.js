@@ -67,4 +67,10 @@ export const StyledRegisterVideo = styled.div`
     color: ${({ theme }) => theme.textColorBase};
     background-color: ${({ theme }) => theme.backgroundBase};
   }
+  .imagem_tumb{
+    margin-top: 10px;
+    img{
+        max-width: 100%;
+    }
+  }
 `;
