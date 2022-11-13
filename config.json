@@ -1,8 +1,8 @@
 {
-    "name": "Mario Souto (DevSoutinho)",
-    "jog": "Lead Software Engineer",
-    "github": "omariosouto",
-    "banner": "https://images.unsplash.com/photo-1649695768323-96a6ecc056e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    "name": "Ivana Brito",
+    "jog": "Desenvolvedora web Front-end",
+    "github": "IvanaBrito",
+    "banner": "https://images.unsplash.com/photo-1667584582921-6f09a49d4f6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
     "playlists": {
         "jogos": [
             {
@@ -133,11 +133,11 @@
     },
     "favorites": [
         {
-            "user": "teste_favorito01",
-            "profile": "omariosouto"
+            "user": "rafaellaballerini",
+            "profile": "rafaballerini"
         },
         {
-            "user": "teste_favorito02",
+            "user": "omariosouto",
             "profile": "omariosouto"
         }
     ]

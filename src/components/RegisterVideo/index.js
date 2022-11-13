@@ -1,5 +1,14 @@
 import React from "react";
 import { StyledRegisterVideo } from "./style";
+import { createClient } from "@supabase/supabase-js";
+
+const PROJECT_URL = "https://vxdzddbgjxtlmpcsmbff.supabase.co";
+const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4ZHpkZGJnanh0bG1wY3NtYmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgzNjc1ODIsImV4cCI6MTk4Mzk0MzU4Mn0.ZTGODhjGTSHcGX22NLxsjPk_yxG-Kahj8jx4AhxsCTY";
+const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+
+function getThumbnail(url) {
+    return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+}
 
 function useForm(propsDoForm) {
     const [values, setValues] = React.useState(propsDoForm.initialValues);
@@ -11,14 +20,14 @@ function useForm(propsDoForm) {
             const value = evento.target.value;
             const name = evento.target.name;
             const thumbnail = thumbVideo(evento.target.value);
-            if(name == "url"){
-            setValues({
-                ...values,
-                [name]: value,
+            if (name == "url") {
+                setValues({
+                    ...values,
+                    [name]: value,
                     thumb: thumbnail,
                 })
             }
-            else{
+            else {
                 setValues({
                     ...values,
                     [name]: value,
@@ -30,22 +39,35 @@ function useForm(propsDoForm) {
         }
     };
 }
-function thumbVideo(url){
+function thumbVideo(url) {
     var id_url = url;
-    id_url = id_url.replace("https://www.youtube.com/watch?v=","")
+    id_url = id_url.replace("https://www.youtube.com/watch?v=", "")
     return `https://i.ytimg.com/vi/${id_url}/hq720.jpg`;
 }
 export default function RegisterVideo() {
     const formCadastro = useForm({
-        initialValues: { titulo: "Frost punk", url: "https://youtube..", thumb: '' }
+        initialValues: { titulo: "", url: "", thumb: '', playlist: '' }
     });
-    const [formVisivel, setFormVisivel] = React.useState(true);
+    const [formVisivel, setFormVisivel] = React.useState(false);
     return (
         <StyledRegisterVideo>
             <button className="add-video" onClick={() => setFormVisivel(true)}>+</button>
             {formVisivel ? (
                 <form onSubmit={(evento) => {
                     evento.preventDefault();
+                    // Contrato entre o nosso Front e o BackEnd
+                    supabase.from("video").insert({
+                        title: formCadastro.values.titulo,
+                        url: formCadastro.values.url,
+                        thumb: getThumbnail(formCadastro.values.url),
+                        playlist: formCadastro.values.playlist,
+                    })
+                        .then((oqueveio) => {
+                            console.log(oqueveio);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                     setFormVisivel(false);
                     formCadastro.clearForm();
                 }}>
@@ -59,8 +81,13 @@ export default function RegisterVideo() {
                             name="url"
                             value={formCadastro.values.url}
                             onChange={formCadastro.handleChange} />
+                        <input placeholder="Nome playlist"
+                            name="playlist"
+                            value={formCadastro.values.playlist}
+                            onChange={formCadastro.handleChange}
+                        />
                         <button type="submit">Cadastrar</button>
-                        {formCadastro.values.thumb && 
+                        {formCadastro.values.thumb &&
                             <div className="imagem_tumb">
                                 <img src={formCadastro.values.thumb} alt="thumb do video" />
                             </div>
