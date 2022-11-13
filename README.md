@@ -1,6 +1,6 @@
 # AluraTube ✨
 ## Projeto da Imersão React oferecida pela Alura
-#### O projeto é uma recriação da página inicial do Youtube com algumas adaptações. Na única página do projeto tem uma timeline de um perfil, com playlists e favoritos. Também possui um formulário para cadastro de novos vídeos.
+#### O projeto é uma recriação da página inicial do Youtube com algumas adaptações. Na única página do projeto tem uma timeline de um perfil, com playlists e favoritos. Também possui um formulário para cadastro de novos vídeos. Para o registro dos vídeos é usado a plataforma Supabase
 ##
 
 <div>
